@@ -13,6 +13,8 @@ const initialiseDatabase = async function(){
     );
     `;
 
+
+    
     try {
         console.log("Creating viewings table");
         await db.query(viewingsTable);
