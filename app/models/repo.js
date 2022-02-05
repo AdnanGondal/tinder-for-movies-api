@@ -1,8 +1,8 @@
 const { Pool } = require("pg");
+const config = require("../config");
 
 const pool = new Pool({
-  connectionString:
-    "postgres://heejhgdx:Bss5fJt7fUst3zzXJiwzDoZps3GjMgHl@tyke.db.elephantsql.com/heejhgdx",
+  connectionString: config.DATABASE_URL,
 });
 
 const query = async (query, params = null) => {
@@ -26,3 +26,10 @@ module.exports = {
   query,
   getClient,
 };
+
+
+
+
+
+
+
