@@ -82,6 +82,17 @@ router.post("/movie/:id",async function(req,res){
 
 });
 
+router.get("/group/:id/movies/ratings", async function(req,res){
+
+  const {id} = req.params
+
+  const query = await db.query("SELECT movie_id,title,votes FROM movies WHERE group_id = $1 ORDER BY votes DESC",[id])
+
+  res.send(query.rows)
+
+
+});
+
 
 
 
