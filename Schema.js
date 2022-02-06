@@ -29,7 +29,7 @@ const initialiseDatabase = async function(){
     DROP TABLE IF EXISTS movies CASCADE;
 
     CREATE TABLE movies (
-        id INT NOT NULL PRIMARY KEY,
+        movie_id SERIAL PRIMARY KEY,
         group_id INTEGER NOT NULL,
         votes INTEGER NOT NULL DEFAULT 0,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
