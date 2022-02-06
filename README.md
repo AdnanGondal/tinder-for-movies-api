@@ -84,3 +84,5 @@ The Hackathon Starter Kit is open source software [licensed as MIT][mlh-license]
 
 [mlh-conduct]: https://github.com/MLH/mlh-hackathon-nodejs-starter/blob/master/docs/CONDUCT.md
 [mlh-license]: https://github.com/MLH/mlh-hackathon-nodejs-starter/blob/master/LICENSE.md
+
+Hackaway v5
