@@ -34,6 +34,12 @@ const initialiseDatabase = async function(){
         votes INTEGER NOT NULL DEFAULT 0,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        title TEXT,
+        overview TEXT,
+        poster_path TEXT,
+        release_date TEXT,
+        popularity NUMERIC,
+        vote_average NUMERIC,
         FOREIGN KEY(group_id) REFERENCES groups(id)
     );
     `
