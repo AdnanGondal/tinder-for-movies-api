@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("../models/repo")
 const Movies = require("../services/movies")
+const format = require('pg-format');
 
 
 const movies = new Movies()
@@ -29,29 +30,28 @@ router.get("/movies", async function(req,res){
 router.post("/group", async function(req,res){
   const {name , num} = req.body;
 
-  console.log(req.params)
-
   const code = (Math.random() + 1)
   .toString(36)
   .substring(4)
   .toUpperCase();
 
-  try {
-    db.query("INSERT INTO groups(name,code) VALUES ($1,$2)",[name,code])
-  } catch(e) {
-     console.log("ERROR adding to groups database")
-     console.log(e)
-  }
 
+  const data = await db.query("INSERT INTO groups(name,code) VALUES ($1,$2) RETURNING id",[name,code])
+  const group_id = data.rows[0].id
 
   // add num number of movies to the movies database....
 
   console.log(num)
-  const data = await movies.getNo(num)
+  const moviesData = await movies.getNo(num)
   
-  const ids = data.map(x => x.id)
-  console.log(ids)
-  res.send({"message":"success","ids":ids})
+  const values = moviesData.map(x => [x.id,group_id])
+
+  await db.query(format('INSERT INTO movies(id,group_id) VALUES %L',values),[],(err,result)=>{
+    console.log(error)
+    console.log(result)
+  })
+
+  res.send({"message":"success","groupID":group_id,"code":code})
 
 })
 
