@@ -8,7 +8,13 @@ class MoviesDB {
 
   async get() {
     const response = await axios.get(this.url);
-    return response.data
+    return response.data.results
+  }
+
+  async getNo(num){
+    const response = await axios.get(this.url)
+
+    return response.data.results.sort(() => 0.5 - Math.random()).slice(0,num)
   }
 }
 

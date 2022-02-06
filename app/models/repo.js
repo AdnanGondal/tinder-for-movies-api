@@ -1,4 +1,5 @@
 const { Pool } = require("pg");
+require('dotenv').config()
 
 
 const pool = new Pool({
@@ -7,6 +8,7 @@ const pool = new Pool({
 
 const query = async (query, params = null) => {
   let response;
+
 
   if (params) {
     response = await pool.query(query, params);
