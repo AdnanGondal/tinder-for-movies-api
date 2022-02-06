@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const handlebars = require("express-handlebars");
 const compression = require("compression");
+var cors = require('cors')
 const logger = require("morgan");
 
 const config = require("../config");
@@ -10,6 +11,7 @@ const routes = require("./routes");
 
 // Set up the express app
 const app = express();
+app.use(cors())
 
 // Log requests to the console.
 app.use(logger("dev"));
